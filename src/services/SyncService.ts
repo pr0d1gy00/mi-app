@@ -72,7 +72,7 @@ export class SyncService {
     try {
       const response = await apiClient.get(`/sync/pull?lastPulledAt=${lastPulledAt}`);
       const data = response.data as { changes?: Record<string, unknown[]> };
-      
+
       return {
         success: true,
         changes: data.changes || {},

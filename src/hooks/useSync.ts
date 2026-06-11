@@ -15,9 +15,9 @@ export function useSync() {
       const db = await getDatabase();
       const syncMetaRepo = new SyncMetadataRepository(db);
       const syncService = new SyncService(db);
-      
+
       const result = await syncService.sync();
-      
+
       if (result.success) {
         const now = new Date().toISOString();
         setLastSyncAt(now);

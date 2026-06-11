@@ -3,6 +3,18 @@ import * as SecureStore from 'expo-secure-store';
 const TOKEN_KEY = '@mi-purchase:auth-token';
 const USER_KEY = '@mi-purchase:auth-user';
 
+export async function setSecureItem(key: string, value: string): Promise<void> {
+  await SecureStore.setItemAsync(`@mi-purchase:${key}`, value);
+}
+
+export async function getSecureItem(key: string): Promise<string | null> {
+  return SecureStore.getItemAsync(`@mi-purchase:${key}`);
+}
+
+export async function deleteSecureItem(key: string): Promise<void> {
+  await SecureStore.deleteItemAsync(`@mi-purchase:${key}`);
+}
+
 export async function saveToken(token: string): Promise<void> {
   await SecureStore.setItemAsync(TOKEN_KEY, token);
 }

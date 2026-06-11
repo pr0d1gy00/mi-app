@@ -21,7 +21,7 @@ Done → Ready
 ## 2. Sync Order (FK integrity)
 
 1. Categories
-2. Products  
+2. Products
 3. Stores
 4. Purchases
 5. PurchaseItems

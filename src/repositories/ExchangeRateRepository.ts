@@ -39,8 +39,17 @@ export class ExchangeRateRepository {
     await this.db.runAsync(
       `INSERT INTO exchange_rates (id, base_currency, target_currency, rate, source, rate_date, is_custom, created_at, updated_at, sync_status, last_synced_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      id, dto.baseCurrency, dto.targetCurrency, dto.rate, dto.source, dto.rateDate, dto.isCustom ? 1 : 0,
-      dto.createdAt || now, dto.updatedAt || now, dto.syncStatus || 'synced', dto.lastSyncedAt || now,
+      id,
+      dto.baseCurrency,
+      dto.targetCurrency,
+      dto.rate,
+      dto.source,
+      dto.rateDate,
+      dto.isCustom ? 1 : 0,
+      dto.createdAt || now,
+      dto.updatedAt || now,
+      dto.syncStatus || 'synced',
+      dto.lastSyncedAt || now,
     );
     return (await this.getById(id))!;
   }
@@ -62,7 +71,11 @@ export class ExchangeRateRepository {
     return row ? this.mapRow(row) : null;
   }
 
-  async getHistory(baseCurrency: string, targetCurrency: string, days: number): Promise<ExchangeRate[]> {
+  async getHistory(
+    baseCurrency: string,
+    targetCurrency: string,
+    days: number,
+  ): Promise<ExchangeRate[]> {
     const cutoff = new Date();
     cutoff.setDate(cutoff.getDate() - days);
     const rows = await this.db.getAllAsync<ExchangeRateRow>(

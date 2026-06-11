@@ -6,16 +6,20 @@ import { Card } from '@/components/Card';
 import { Typography } from '@/components/Typography';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { ExchangeRateDisplay } from '@/components/ExchangeRateDisplay';
+import { RateSourcePicker } from '@/components/RateSourcePicker';
 import { useTheme } from '@/theme/useTheme';
 import { useExchangeRate } from '@/hooks/useExchangeRate';
 import { getDatabase } from '@/database/connection';
 import { CategoryRepository } from '@/repositories/CategoryRepository';
 import { ProductRepository } from '@/repositories/ProductRepository';
 import { StoreRepository } from '@/repositories/StoreRepository';
+import type { RateSource } from '@/types/entities';
 
 export function DashboardEntryScreen() {
   const theme = useTheme();
+  const [rateSource, setRateSource] = useState<RateSource>('BCV');
   const { rate, isLoading: rateLoading } = useExchangeRate('USD', 'VES');
+  const [showRatePicker, setShowRatePicker] = useState(false);
   const [counts, setCounts] = useState({ categories: 0, products: 0, stores: 0 });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -73,7 +77,7 @@ export function DashboardEntryScreen() {
         Dashboard
       </Typography>
       <View style={{ gap: theme.spacing.md }}>
-        <ExchangeRateDisplay rate={rate} isLoading={rateLoading} />
+        <ExchangeRateDisplay rate={rate} isLoading={rateLoading} onPress={() => setShowRatePicker(true)} />
         <Card pressable testID="categories-card">
           <Typography variant="h2">Categories</Typography>
           <Typography variant="h1" style={{ marginTop: theme.spacing.sm }}>
@@ -93,6 +97,13 @@ export function DashboardEntryScreen() {
           </Typography>
         </Card>
       </View>
+
+      <RateSourcePicker
+        visible={showRatePicker}
+        onClose={() => setShowRatePicker(false)}
+        currentSource={rateSource}
+        onSelectSource={setRateSource}
+      />
     </Screen>
   );
 }
