@@ -24,6 +24,12 @@ export type PurchaseStackParamList = {
   PurchaseDetail: { purchaseId: string };
 };
 
+export type PurchaseGroupStackParamList = {
+  PurchaseGroupList: undefined;
+  PurchaseGroupCreate: undefined;
+  PurchaseGroupDetail: { groupId: string };
+};
+
 export type DashboardStackParamList = {
   DashboardEntry: undefined;
 };
@@ -34,6 +40,7 @@ export type BottomTabParamList = {
   Products: undefined;
   Stores: undefined;
   Purchases: undefined;
+  PurchaseGroups: undefined;
   Settings: undefined;
 };
 

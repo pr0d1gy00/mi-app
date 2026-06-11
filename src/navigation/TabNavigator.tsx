@@ -17,6 +17,9 @@ import { StoreFormScreen } from '@/screens/stores/StoreFormScreen';
 import { PurchaseListScreen } from '@/screens/purchases/PurchaseListScreen';
 import { PurchaseCreateScreen } from '@/screens/purchases/PurchaseCreateScreen';
 import { PurchaseDetailScreen } from '@/screens/purchases/PurchaseDetailScreen';
+import { PurchaseGroupListScreen } from '@/screens/purchase-groups/PurchaseGroupListScreen';
+import { PurchaseGroupCreateScreen } from '@/screens/purchase-groups/PurchaseGroupCreateScreen';
+import { PurchaseGroupDetailScreen } from '@/screens/purchase-groups/PurchaseGroupDetailScreen';
 import type {
   BottomTabParamList,
   DashboardStackParamList,
@@ -24,6 +27,7 @@ import type {
   ProductStackParamList,
   StoreStackParamList,
   PurchaseStackParamList,
+  PurchaseGroupStackParamList,
 } from './types';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -90,6 +94,17 @@ function PurchaseStackNavigator() {
   );
 }
 
+const PurchaseGroupStack = createNativeStackNavigator<PurchaseGroupStackParamList>();
+function PurchaseGroupStackNavigator() {
+  return (
+    <PurchaseGroupStack.Navigator screenOptions={{ headerShown: false }}>
+      <PurchaseGroupStack.Screen name="PurchaseGroupList" component={PurchaseGroupListScreen} />
+      <PurchaseGroupStack.Screen name="PurchaseGroupCreate" component={PurchaseGroupCreateScreen} />
+      <PurchaseGroupStack.Screen name="PurchaseGroupDetail" component={PurchaseGroupDetailScreen} />
+    </PurchaseGroupStack.Navigator>
+  );
+}
+
 export function TabNavigator() {
   const theme = useTheme();
   return (
@@ -143,6 +158,15 @@ export function TabNavigator() {
         options={{
           tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name="cart-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="PurchaseGroups"
+        component={PurchaseGroupStackNavigator}
+        options={{
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
+            <Ionicons name="folder-outline" size={size} color={color} />
           ),
         }}
       />

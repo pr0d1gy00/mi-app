@@ -30,7 +30,7 @@ export const migration003CreatePurchaseGroups: Migration = {
       purchase_id TEXT NOT NULL,
       FOREIGN KEY (purchase_group_id) REFERENCES purchase_groups(id) ON DELETE CASCADE,
       FOREIGN KEY (purchase_id) REFERENCES purchases(id) ON DELETE CASCADE,
-      UNIQUE(purchase_group_id, purchase_id)
+      CONSTRAINT uq_pgi_group_purchase UNIQUE(purchase_group_id, purchase_id)
     );
 
     -- Indexes for junction table

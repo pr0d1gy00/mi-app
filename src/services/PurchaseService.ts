@@ -6,7 +6,6 @@ import {
 import { PurchaseGroupRepository } from '@/repositories/PurchaseGroupRepository';
 import type { Purchase, PurchaseGroup } from '@/types/entities';
 import type { SQLiteDatabase } from 'expo-sqlite';
-import { generateUuid } from '@/utils/uuid';
 import type { SyncStatus } from '@/types/entities';
 
 /**
@@ -14,7 +13,7 @@ import type { SyncStatus } from '@/types/entities';
  * Coordinates between PurchaseRepository and PurchaseGroupRepository
  */
 export class PurchaseService {
-  constructor(private db: SQLiteDatabase) {
+  constructor(db: SQLiteDatabase) {
     this.purchaseRepo = new PurchaseRepository(db);
     this.groupRepo = new PurchaseGroupRepository(db);
   }

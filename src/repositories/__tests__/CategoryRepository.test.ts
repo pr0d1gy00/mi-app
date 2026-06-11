@@ -119,7 +119,7 @@ describe('CategoryRepository', () => {
       created.id,
     );
     expect(new Date(row!.last_synced_at).getTime()).toBeGreaterThanOrEqual(
-      new Date(created.lastSyncedAt).getTime(),
+      new Date(created.lastSyncedAt ?? created.createdAt).getTime(),
     );
   });
 

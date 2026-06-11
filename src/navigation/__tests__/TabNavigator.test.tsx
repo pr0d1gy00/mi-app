@@ -85,6 +85,30 @@ jest.mock('@/screens/purchases/PurchaseDetailScreen', () => ({
   },
 }));
 
+jest.mock('@/screens/purchase-groups/PurchaseGroupListScreen', () => ({
+  PurchaseGroupListScreen: () => {
+    const React = jest.requireActual('react');
+    const { Text } = jest.requireActual('react-native');
+    return React.createElement(Text, null, 'Purchase Groups');
+  },
+}));
+
+jest.mock('@/screens/purchase-groups/PurchaseGroupCreateScreen', () => ({
+  PurchaseGroupCreateScreen: () => {
+    const React = jest.requireActual('react');
+    const { Text } = jest.requireActual('react-native');
+    return React.createElement(Text, null, 'Purchase Group Create');
+  },
+}));
+
+jest.mock('@/screens/purchase-groups/PurchaseGroupDetailScreen', () => ({
+  PurchaseGroupDetailScreen: () => {
+    const React = jest.requireActual('react');
+    const { Text } = jest.requireActual('react-native');
+    return React.createElement(Text, null, 'Purchase Group Detail');
+  },
+}));
+
 jest.mock('@react-navigation/bottom-tabs', () => {
   const React = jest.requireActual('react');
   const { View } = jest.requireActual('react-native');
@@ -158,10 +182,18 @@ describe('TabNavigator', () => {
     expect(getByTestId('tab-navigator')).toBeTruthy();
   });
 
-  it('has 6 tabs: Home, Categories, Products, Stores, Purchases, Settings', () => {
+  it('has 7 tabs: Home, Categories, Products, Stores, Purchases, PurchaseGroups, Settings', () => {
     render(<TabNavigator />, { wrapper: Wrapper });
     const names = mockScreen.mock.calls.map((call: any) => call[0].name);
-    expect(names).toEqual(['Home', 'Categories', 'Products', 'Stores', 'Purchases', 'Settings']);
+    expect(names).toEqual([
+      'Home',
+      'Categories',
+      'Products',
+      'Stores',
+      'Purchases',
+      'PurchaseGroups',
+      'Settings',
+    ]);
   });
 
   it('Home tab shows "Dashboard" heading', () => {
@@ -187,6 +219,11 @@ describe('TabNavigator', () => {
   it('Purchases tab shows "Purchases" heading', () => {
     const { getByText } = render(<TabNavigator />, { wrapper: Wrapper });
     expect(getByText('Purchases')).toBeTruthy();
+  });
+
+  it('PurchaseGroups tab shows "Purchase Groups" heading', () => {
+    const { getByText } = render(<TabNavigator />, { wrapper: Wrapper });
+    expect(getByText('Purchase Groups')).toBeTruthy();
   });
 
   it('Settings tab shows "Settings" heading and toggle button', () => {

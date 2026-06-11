@@ -6,7 +6,7 @@ export interface BaseEntity {
   updatedAt: string;
   deletedAt: string | null;
   syncStatus: SyncStatus;
-  lastSyncedAt: string;
+  lastSyncedAt: string | null;
 }
 
 export interface Category extends BaseEntity {

@@ -1,16 +1,17 @@
 import type { BottomTabParamList, RootStackParamList } from '../types';
 
 describe('Navigation Types', () => {
-  it('BottomTabParamList has 6 keys: Home, Categories, Products, Stores, Purchases, Settings', () => {
+  it('BottomTabParamList has 7 keys: Home, Categories, Products, Stores, Purchases, PurchaseGroups, Settings', () => {
     const keys: (keyof BottomTabParamList)[] = [
       'Home',
       'Categories',
       'Products',
       'Stores',
       'Purchases',
+      'PurchaseGroups',
       'Settings',
     ];
-    expect(keys).toHaveLength(6);
+    expect(keys).toHaveLength(7);
     type Assert = BottomTabParamList extends Record<string, undefined> ? true : false;
     const _assert: Assert = true;
     expect(_assert).toBe(true);
@@ -31,6 +32,7 @@ describe('Navigation Types', () => {
       Products: undefined,
       Stores: undefined,
       Purchases: undefined,
+      PurchaseGroups: undefined,
       Settings: undefined,
     };
     const _rootStackParams: RootStackParamList = {
