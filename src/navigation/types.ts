@@ -18,6 +18,12 @@ export type StoreStackParamList = {
   StoreForm: undefined;
 };
 
+export type PurchaseStackParamList = {
+  PurchaseList: undefined;
+  PurchaseCreate: undefined;
+  PurchaseDetail: { purchaseId: string };
+};
+
 export type DashboardStackParamList = {
   DashboardEntry: undefined;
 };

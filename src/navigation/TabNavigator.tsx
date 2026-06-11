@@ -14,23 +14,19 @@ import { ProductListScreen } from '@/screens/products/ProductListScreen';
 import { ProductFormScreen } from '@/screens/products/ProductFormScreen';
 import { StoreListScreen } from '@/screens/stores/StoreListScreen';
 import { StoreFormScreen } from '@/screens/stores/StoreFormScreen';
+import { PurchaseListScreen } from '@/screens/purchases/PurchaseListScreen';
+import { PurchaseCreateScreen } from '@/screens/purchases/PurchaseCreateScreen';
+import { PurchaseDetailScreen } from '@/screens/purchases/PurchaseDetailScreen';
 import type {
   BottomTabParamList,
   DashboardStackParamList,
   CategoryStackParamList,
   ProductStackParamList,
   StoreStackParamList,
+  PurchaseStackParamList,
 } from './types';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
-
-export function PurchasesScreen() {
-  return (
-    <Screen>
-      <Typography variant="h1">Purchases</Typography>
-    </Screen>
-  );
-}
 
 export function SettingsScreen() {
   const { mode, setMode } = useThemeStore();
@@ -83,6 +79,17 @@ function StoreStackNavigator() {
   );
 }
 
+const PurchaseStack = createNativeStackNavigator<PurchaseStackParamList>();
+function PurchaseStackNavigator() {
+  return (
+    <PurchaseStack.Navigator screenOptions={{ headerShown: false }}>
+      <PurchaseStack.Screen name="PurchaseList" component={PurchaseListScreen} />
+      <PurchaseStack.Screen name="PurchaseCreate" component={PurchaseCreateScreen} />
+      <PurchaseStack.Screen name="PurchaseDetail" component={PurchaseDetailScreen} />
+    </PurchaseStack.Navigator>
+  );
+}
+
 export function TabNavigator() {
   const theme = useTheme();
   return (
@@ -132,7 +139,7 @@ export function TabNavigator() {
       />
       <Tab.Screen
         name="Purchases"
-        component={PurchasesScreen}
+        component={PurchaseStackNavigator}
         options={{
           tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name="cart-outline" size={size} color={color} />

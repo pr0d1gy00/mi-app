@@ -61,6 +61,30 @@ jest.mock('@/screens/stores/StoreFormScreen', () => ({
   },
 }));
 
+jest.mock('@/screens/purchases/PurchaseListScreen', () => ({
+  PurchaseListScreen: () => {
+    const React = jest.requireActual('react');
+    const { Text } = jest.requireActual('react-native');
+    return React.createElement(Text, null, 'Purchases');
+  },
+}));
+
+jest.mock('@/screens/purchases/PurchaseCreateScreen', () => ({
+  PurchaseCreateScreen: () => {
+    const React = jest.requireActual('react');
+    const { Text } = jest.requireActual('react-native');
+    return React.createElement(Text, null, 'Purchase Create');
+  },
+}));
+
+jest.mock('@/screens/purchases/PurchaseDetailScreen', () => ({
+  PurchaseDetailScreen: () => {
+    const React = jest.requireActual('react');
+    const { Text } = jest.requireActual('react-native');
+    return React.createElement(Text, null, 'Purchase Detail');
+  },
+}));
+
 jest.mock('@react-navigation/bottom-tabs', () => {
   const React = jest.requireActual('react');
   const { View } = jest.requireActual('react-native');
