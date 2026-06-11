@@ -51,7 +51,14 @@ export function RateSourcePicker({ visible, onClose, currentSource, onSelectSour
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' }}>
-        <View style={{ backgroundColor: theme.colors.background, borderTopLeftRadius: 16, borderTopRightRadius: 16, padding: 16 }}>
+        <View
+          style={{
+            backgroundColor: theme.colors.background,
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
+            padding: 16,
+          }}
+        >
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 16 }}>
             <Typography variant="h2">Seleccionar Fuente</Typography>
             <Pressable onPress={onClose}>
@@ -69,7 +76,8 @@ export function RateSourcePicker({ visible, onClose, currentSource, onSelectSour
                   onPress={() => handleSelect(source.value)}
                   style={{
                     borderWidth: currentSource === source.value ? 2 : 1,
-                    borderColor: currentSource === source.value ? theme.colors.primary : theme.colors.border,
+                    borderColor:
+                      currentSource === source.value ? theme.colors.primary : theme.colors.border,
                   }}
                 >
                   <Typography variant="h3">{source.label}</Typography>
@@ -98,7 +106,11 @@ export function RateSourcePicker({ visible, onClose, currentSource, onSelectSour
                 placeholder="YYYY-MM-DD"
               />
               <View style={{ flexDirection: 'row', gap: theme.spacing.sm }}>
-                <Button testID="cancel-custom" variant="ghost" onPress={() => setShowCustomForm(false)}>
+                <Button
+                  testID="cancel-custom"
+                  variant="ghost"
+                  onPress={() => setShowCustomForm(false)}
+                >
                   Cancelar
                 </Button>
                 <Button testID="save-custom" onPress={handleSaveCustom}>

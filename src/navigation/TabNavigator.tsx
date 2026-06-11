@@ -1,12 +1,16 @@
 import React from 'react';
+import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { Screen } from '@/components/Screen';
+import { Card } from '@/components/Card';
 import { Typography } from '@/components/Typography';
 import { Button } from '@/components/Button';
 import { useTheme } from '@/theme/useTheme';
 import { useThemeStore } from '@/hooks/useThemeStore';
+import { useSync } from '@/hooks/useSync';
+import { useConnectivity } from '@/hooks/useConnectivity';
 import { DashboardEntryScreen } from '@/screens/dashboard/DashboardEntryScreen';
 import { CategoryListScreen } from '@/screens/categories/CategoryListScreen';
 import { CategoryFormScreen } from '@/screens/categories/CategoryFormScreen';
@@ -33,13 +37,58 @@ import type {
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 export function SettingsScreen() {
+  const theme = useTheme();
   const { mode, setMode } = useThemeStore();
+  const { sync, isSyncing, lastSyncAt } = useSync();
+  const { isOnline } = useConnectivity();
+
+  const formatLastSync = (date: string | null) => {
+    if (!date) return 'Never';
+    const d = new Date(date);
+    const now = new Date();
+    const diff = Math.floor((now.getTime() - d.getTime()) / 60000);
+    if (diff < 1) return 'Just now';
+    if (diff < 60) return `${diff}m ago`;
+    if (diff < 1440) return `${Math.floor(diff / 60)}h ago`;
+    return d.toLocaleDateString();
+  };
+
   return (
-    <Screen>
-      <Typography variant="h1">Settings</Typography>
-      <Button onPress={() => setMode(mode === 'dark' ? 'light' : 'dark')} testID="dark-mode-toggle">
-        Toggle Dark Mode
-      </Button>
+    <Screen scrollable>
+      <Typography variant="h1" style={{ marginBottom: theme.spacing.lg }}>Settings</Typography>
+
+      <Typography variant="h2" style={{ marginBottom: theme.spacing.sm }}>Sync</Typography>
+      <Card testID="sync-status-card">
+        <View style={{ gap: theme.spacing.sm }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Typography variant="body">Status</Typography>
+            <Typography variant="body" color={isOnline ? theme.colors.success : theme.colors.error}>
+              {isOnline ? 'Online' : 'Offline'}
+            </Typography>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Typography variant="body">Last sync</Typography>
+            <Typography variant="bodySmall" color={theme.colors.textSecondary}>
+              {formatLastSync(lastSyncAt)}
+            </Typography>
+          </View>
+          <Button
+            testID="sync-now-button"
+            loading={isSyncing}
+            disabled={!isOnline}
+            onPress={sync}
+          >
+            {isSyncing ? 'Syncing...' : 'Sync Now'}
+          </Button>
+        </View>
+      </Card>
+
+      <Typography variant="h2" style={{ marginTop: theme.spacing.xl, marginBottom: theme.spacing.sm }}>Appearance</Typography>
+      <Card testID="appearance-card">
+        <Button onPress={() => setMode(mode === 'dark' ? 'light' : 'dark')} testID="dark-mode-toggle">
+          Toggle Dark Mode
+        </Button>
+      </Card>
     </Screen>
   );
 }

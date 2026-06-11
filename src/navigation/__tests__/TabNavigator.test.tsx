@@ -109,6 +109,23 @@ jest.mock('@/screens/purchase-groups/PurchaseGroupDetailScreen', () => ({
   },
 }));
 
+jest.mock('@/hooks/useSync', () => ({
+  useSync: () => ({
+    sync: jest.fn(),
+    isSyncing: false,
+    lastSyncAt: null,
+    error: null,
+  }),
+}));
+
+jest.mock('@react-native-community/netinfo', () => ({
+  __esModule: true,
+  default: {
+    addEventListener: jest.fn(() => jest.fn()),
+    fetch: jest.fn().mockResolvedValue({ isConnected: true }),
+  },
+}));
+
 jest.mock('@react-navigation/bottom-tabs', () => {
   const React = jest.requireActual('react');
   const { View } = jest.requireActual('react-native');

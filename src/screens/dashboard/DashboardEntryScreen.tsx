@@ -77,7 +77,11 @@ export function DashboardEntryScreen() {
         Dashboard
       </Typography>
       <View style={{ gap: theme.spacing.md }}>
-        <ExchangeRateDisplay rate={rate} isLoading={rateLoading} onPress={() => setShowRatePicker(true)} />
+        <ExchangeRateDisplay
+          rate={rate}
+          isLoading={rateLoading}
+          onPress={() => setShowRatePicker(true)}
+        />
         <Card pressable testID="categories-card">
           <Typography variant="h2">Categories</Typography>
           <Typography variant="h1" style={{ marginTop: theme.spacing.sm }}>
