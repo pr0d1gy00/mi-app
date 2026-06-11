@@ -1,0 +1,72 @@
+# OpenSpec SDD Configuration — mi-purchase-app
+# Auto-generated during SDD initialization on 2026-06-11
+
+project:
+  name: mi-purchase-app
+  description: "Offline-first React Native purchase tracking app with iOS-inspired premium design"
+  stack:
+    - "React Native with Expo SDK 56+"
+    - "TypeScript"
+    - "Expo SQLite (local DB)"
+    - "Axios (HTTP)"
+    - "Zustand (state management)"
+    - "TanStack Query (data caching)"
+    - "Repository Pattern"
+  architecture: "Modular, offline-first with sync to NestJS backend"
+  design_language: "iOS-inspired premium (Apple Wallet/Health/Stocks aesthetic)"
+  theme: "Dark mode from start"
+
+  backend:
+    path: "C:/Users/mendo/Downloads/purchase-back"
+    stack: "NestJS + Prisma + PostgreSQL"
+    api_prefix: "purchase/api/v1"
+
+  modules:
+    - Auth
+    - Categories
+    - Products
+    - Stores
+    - Purchases
+    - PurchaseGroups
+    - ExchangeRates
+    - Sync
+
+sdd:
+  strict_tdd: true
+  phases:
+    proposal:
+      enabled: true
+      requires_prd_review: true
+      proposal_questions: true
+      max_question_rounds: 2
+      questions_per_round: 5
+    spec:
+      enabled: true
+    design:
+      enabled: true
+    tasks:
+      enabled: true
+
+  review:
+    budget_lines: 250
+    chained_pr_strategy: "ask-always"
+
+  artifact_store: "both" # openspec + engram
+
+  execution_mode: interactive
+  interactive_phase_gate: true
+  # Words that approve the immediate next phase only:
+  # continue, dale, go on
+
+testing:
+  runner: "jest"
+  framework: "jest + React Native Testing Library"
+  e2e_framework: "detox" # optional, phase-dependent
+  tdd_enforcement: true
+  # TDD cycle: write failing test → implement → refactor → green
+  # Tests live beside the code they verify (work-unit convention)
+
+conventions:
+  commit_style: "work-unit" # not file-type batches
+  # Tests and docs stay beside the code they verify
+  # Chained PRs follow the gentle-ai-chained-pr skill (400-line cognitive budget)
