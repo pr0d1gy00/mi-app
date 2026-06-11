@@ -79,6 +79,23 @@ jest.mock('@/repositories/StoreRepository', () => ({
   })),
 }));
 
+jest.mock('@react-native-community/netinfo', () => ({
+  __esModule: true,
+  default: {
+    addEventListener: jest.fn(() => jest.fn()),
+    fetch: jest.fn().mockResolvedValue({ isConnected: true }),
+  },
+}));
+
+jest.mock('@/hooks/useExchangeRate', () => ({
+  useExchangeRate: () => ({
+    rate: null,
+    isLoading: false,
+    error: null,
+    refresh: jest.fn(),
+  }),
+}));
+
 describe('DashboardEntryScreen', () => {
   test('1. renders with zero counts', async () => {
     const { getByText } = render(<DashboardEntryScreen />);

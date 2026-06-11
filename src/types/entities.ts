@@ -62,3 +62,20 @@ export interface PurchaseGroupItem {
   purchaseGroupId: string;
   purchaseId: string;
 }
+
+export type RateSource = 'BCV' | 'Paralelo' | 'Custom';
+
+export interface ExchangeRate extends BaseEntity {
+  baseCurrency: string;
+  targetCurrency: string;
+  rate: string;
+  source: RateSource;
+  rateDate: string;
+  isCustom: boolean;
+}
+
+export interface SyncMetadata {
+  lastPullAt: string | null;
+  lastPushAt: string | null;
+  isInitialSyncDone: boolean;
+}
