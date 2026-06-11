@@ -1,8 +1,14 @@
 import type { SQLiteDatabase } from 'expo-sqlite';
 import { DatabaseError } from '../errors';
 import { migration001CreateTables } from './001-create-tables';
+import { migration002CreatePurchases } from './002-create-purchases';
+import { migration003CreatePurchaseGroups } from './003-create-purchase-groups';
 
-export const migrations = [migration001CreateTables];
+export const migrations = [
+  migration001CreateTables,
+  migration002CreatePurchases,
+  migration003CreatePurchaseGroups,
+];
 
 export async function runMigrations(db: SQLiteDatabase): Promise<void> {
   // Ensure _migrations table exists

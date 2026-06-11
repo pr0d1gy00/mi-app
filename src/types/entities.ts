@@ -29,3 +29,36 @@ export interface Store extends BaseEntity {
   location: string | null;
   userId: string | null;
 }
+
+export interface Purchase extends BaseEntity {
+  storeId: string | null;
+  userId: string;
+  totalAmount: string;
+  currency: string;
+  notes: string | null;
+  purchaseDate: string;
+}
+
+export interface PurchaseItem extends BaseEntity {
+  purchaseId: string;
+  productId: string | null;
+  productName: string;
+  quantity: number;
+  unitPrice: string;
+  totalPrice: string;
+  notes: string | null;
+}
+
+export interface PurchaseGroup extends BaseEntity {
+  name: string;
+  description: string | null;
+  userId: string;
+  startDate: string | null;
+  endDate: string | null;
+}
+
+export interface PurchaseGroupItem {
+  id: string;
+  purchaseGroupId: string;
+  purchaseId: string;
+}
