@@ -7,6 +7,7 @@ import { Button } from '@/components/Button';
 import { Typography } from '@/components/Typography';
 import { useTheme } from '@/theme/useTheme';
 import { useNotificationStore } from '@/hooks/useNotificationStore';
+import { useAuthStore } from '@/hooks/useAuthStore';
 import { getDatabase } from '@/database/connection';
 import { PurchaseGroupRepository } from '@/repositories/PurchaseGroupRepository';
 import { purchaseGroupSchema } from '@/types/validation';
@@ -15,6 +16,7 @@ export function PurchaseGroupCreateScreen() {
   const theme = useTheme();
   const navigation = useNavigation();
   const { notify } = useNotificationStore();
+  const userId = useAuthStore((state) => state.user?.id);
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -50,7 +52,7 @@ export function PurchaseGroupCreateScreen() {
       await repo.create({
         name,
         description: description || null,
-        userId: 'current-user', // TODO: Get from auth
+        userId: userId ?? 'anonymous',
         startDate: startDate || null,
         endDate: endDate || null,
         createdAt: new Date().toISOString(),

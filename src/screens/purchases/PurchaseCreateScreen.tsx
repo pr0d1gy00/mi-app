@@ -8,6 +8,7 @@ import { Typography } from '@/components/Typography';
 import { Card } from '@/components/Card';
 import { useTheme } from '@/theme/useTheme';
 import { useNotificationStore } from '@/hooks/useNotificationStore';
+import { useAuthStore } from '@/hooks/useAuthStore';
 import { getDatabase } from '@/database/connection';
 import { PurchaseRepository } from '@/repositories/PurchaseRepository';
 
@@ -24,6 +25,7 @@ export function PurchaseCreateScreen() {
   const theme = useTheme();
   const navigation = useNavigation();
   const { notify } = useNotificationStore();
+  const userId = useAuthStore((state) => state.user?.id);
 
   const [storeId, setStoreId] = useState('');
   const [currency, setCurrency] = useState('USD');
@@ -87,7 +89,7 @@ export function PurchaseCreateScreen() {
       await repo.create(
         {
           storeId: storeId || null,
-          userId: 'current-user', // TODO: Get from auth
+          userId: userId ?? 'anonymous',
           totalAmount: calculateTotal().toFixed(2),
           currency,
           notes: notes || null,
