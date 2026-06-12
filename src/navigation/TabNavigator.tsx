@@ -55,9 +55,13 @@ export function SettingsScreen() {
 
   return (
     <Screen scrollable>
-      <Typography variant="h1" style={{ marginBottom: theme.spacing.lg }}>Settings</Typography>
+      <Typography variant="h1" style={{ marginBottom: theme.spacing.lg }}>
+        Settings
+      </Typography>
 
-      <Typography variant="h2" style={{ marginBottom: theme.spacing.sm }}>Sync</Typography>
+      <Typography variant="h2" style={{ marginBottom: theme.spacing.sm }}>
+        Sync
+      </Typography>
       <Card testID="sync-status-card">
         <View style={{ gap: theme.spacing.sm }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -72,20 +76,23 @@ export function SettingsScreen() {
               {formatLastSync(lastSyncAt)}
             </Typography>
           </View>
-          <Button
-            testID="sync-now-button"
-            loading={isSyncing}
-            disabled={!isOnline}
-            onPress={sync}
-          >
+          <Button testID="sync-now-button" loading={isSyncing} disabled={!isOnline} onPress={sync}>
             {isSyncing ? 'Syncing...' : 'Sync Now'}
           </Button>
         </View>
       </Card>
 
-      <Typography variant="h2" style={{ marginTop: theme.spacing.xl, marginBottom: theme.spacing.sm }}>Appearance</Typography>
+      <Typography
+        variant="h2"
+        style={{ marginTop: theme.spacing.xl, marginBottom: theme.spacing.sm }}
+      >
+        Appearance
+      </Typography>
       <Card testID="appearance-card">
-        <Button onPress={() => setMode(mode === 'dark' ? 'light' : 'dark')} testID="dark-mode-toggle">
+        <Button
+          onPress={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+          testID="dark-mode-toggle"
+        >
           Toggle Dark Mode
         </Button>
       </Card>
