@@ -3,6 +3,7 @@
     "name": "mi-purchase-app",
     "slug": "mi-purchase-app",
     "version": "1.0.0",
+    "entryPoint": "./src/app/App",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "splash": {
