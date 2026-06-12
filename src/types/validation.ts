@@ -73,3 +73,17 @@ export const purchaseGroupSchema = z
       path: ['endDate'],
     },
   );
+
+// Exchange Rate validation
+export const exchangeRateSchema = z.object({
+  baseCurrency: z.string().length(3), // e.g., 'USD'
+  targetCurrency: z.string().length(3), // e.g., 'VES'
+  rate: z.string().regex(/^\d+\.?\d{0,4}$/, 'Invalid rate format'),
+  source: z.enum(['BCV', 'Paralelo', 'Custom']),
+  rateDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format (YYYY-MM-DD)'),
+});
+
+export const customRateSchema = z.object({
+  rate: z.string().regex(/^\d+\.?\d{0,4}$/, 'Invalid rate format'),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format (YYYY-MM-DD)'),
+});

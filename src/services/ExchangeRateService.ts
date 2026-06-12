@@ -4,8 +4,6 @@ import { apiClient } from '@/services/apiClient';
 import { getSecureItem } from '@/services/secureStore';
 import type { ExchangeRate, RateSource } from '@/types/entities';
 
-const API_BASE_URL = 'http://localhost:3000';
-
 export interface ExchangeRateResult {
   success: boolean;
   rate: ExchangeRate | null;
@@ -37,7 +35,7 @@ export class ExchangeRateService {
       } else {
         // Fetch from backend
         const response = await apiClient.get(
-          `${API_BASE_URL}/exchange-rates?base=${baseCurrency}&target=${targetCurrency}&source=${source}`,
+          `/exchange-rates?base=${baseCurrency}&target=${targetCurrency}&source=${source}`,
         );
         const data = response.data as { rate?: string; value?: string };
         rateValue = data.rate || data.value || '';
@@ -138,7 +136,7 @@ export class ExchangeRateService {
   ): Promise<{ rate: string | null; error: string | null }> {
     try {
       const response = await apiClient.get(
-        `${API_BASE_URL}/exchange-rates?base=${baseCurrency}&target=${targetCurrency}&source=${source}`,
+        `/exchange-rates?base=${baseCurrency}&target=${targetCurrency}&source=${source}`,
       );
       const data = response.data as { rate?: string; value?: string };
       return { rate: data.rate || data.value || null, error: null };
