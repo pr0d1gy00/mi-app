@@ -9,24 +9,28 @@
 ## Implementation Summary
 
 ### PR1: Schema + Types + Validation
+
 - [x] Migration 003 - purchase_groups table
 - [x] Type additions: Purchase, PurchaseItem, PurchaseGroup
 - [x] Validation schemas: purchaseSchema, purchaseGroupSchema
 - [x] Tests for types
 
 ### PR2: Repositories
+
 - [x] PurchaseRepository (CRUD)
 - [x] PurchaseItemRepository (CRUD)
 - [x] PurchaseGroupRepository (CRUD)
 - [x] Tests for all repositories
 
 ### PR3: Purchase Screens
+
 - [x] PurchaseListScreen
 - [x] PurchaseCreateScreen
 - [x] PurchaseDetailScreen
 - [x] Tests for screens
 
 ### PR4: PurchaseGroup Screens
+
 - [x] PurchaseGroupListScreen
 - [x] PurchaseGroupCreateScreen
 - [x] PurchaseGroupDetailScreen
@@ -36,18 +40,18 @@
 
 ## Files Modified/Created
 
-| File | Status |
-|------|--------|
-| src/database/migrations/003-create-purchase-groups.ts | ✅ |
-| src/types/entities.ts | ✅ |
-| src/types/validation.ts | ✅ |
-| src/repositories/PurchaseRepository.ts | ✅ |
-| src/repositories/PurchaseItemRepository.ts | ✅ |
-| src/repositories/PurchaseGroupRepository.ts | ✅ |
-| src/services/PurchaseService.ts | ✅ |
-| src/screens/purchases/*.tsx | ✅ |
-| src/screens/purchase-groups/*.tsx | ✅ |
-| src/navigation/types.ts | ✅ |
+| File                                                  | Status |
+| ----------------------------------------------------- | ------ |
+| src/database/migrations/003-create-purchase-groups.ts | ✅     |
+| src/types/entities.ts                                 | ✅     |
+| src/types/validation.ts                               | ✅     |
+| src/repositories/PurchaseRepository.ts                | ✅     |
+| src/repositories/PurchaseItemRepository.ts            | ✅     |
+| src/repositories/PurchaseGroupRepository.ts           | ✅     |
+| src/services/PurchaseService.ts                       | ✅     |
+| src/screens/purchases/\*.tsx                          | ✅     |
+| src/screens/purchase-groups/\*.tsx                    | ✅     |
+| src/navigation/types.ts                               | ✅     |
 
 ---
 

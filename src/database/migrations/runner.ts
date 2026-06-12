@@ -3,11 +3,15 @@ import { DatabaseError } from '../errors';
 import { migration001CreateTables } from './001-create-tables';
 import { migration002CreatePurchases } from './002-create-purchases';
 import { migration003CreatePurchaseGroups } from './003-create-purchase-groups';
+import { migration004CreateExchangeRates } from './004-create-exchange-rates';
+import { migration005CreateSyncMetadata } from './005-create-sync-metadata';
 
 export const migrations = [
   migration001CreateTables,
   migration002CreatePurchases,
   migration003CreatePurchaseGroups,
+  migration004CreateExchangeRates,
+  migration005CreateSyncMetadata,
 ];
 
 export async function runMigrations(db: SQLiteDatabase): Promise<void> {

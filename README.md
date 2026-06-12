@@ -96,13 +96,13 @@ npm test -- --testPathPattern="CategoryRepository"
 
 Migrations run automatically on app startup:
 
-| # | Name | Description |
-|---|------|-------------|
-| 001 | Initial schema | Users, stores, products, categories |
-| 002 | Add deletedAt | Soft delete support |
-| 003 | Purchase groups | Group purchases together |
-| 004 | Exchange rates | Store rate history |
-| 005 | Sync metadata | Track sync timestamps |
+| #   | Name            | Description                         |
+| --- | --------------- | ----------------------------------- |
+| 001 | Initial schema  | Users, stores, products, categories |
+| 002 | Add deletedAt   | Soft delete support                 |
+| 003 | Purchase groups | Group purchases together            |
+| 004 | Exchange rates  | Store rate history                  |
+| 005 | Sync metadata   | Track sync timestamps               |
 
 ## Sync Flow
 
@@ -120,15 +120,15 @@ Migrations run automatically on app startup:
 
 ## Screens
 
-| Tab | Screens |
-|-----|---------|
-| Home | Dashboard (rate card + counts) |
-| Categories | List, Create, Edit |
-| Products | List, Create, Edit |
-| Stores | List, Create, Edit |
-| Purchases | List, Create, Detail |
-| Groups | List, Create, Detail |
-| Settings | Sync status, Appearance |
+| Tab        | Screens                        |
+| ---------- | ------------------------------ |
+| Home       | Dashboard (rate card + counts) |
+| Categories | List, Create, Edit             |
+| Products   | List, Create, Edit             |
+| Stores     | List, Create, Edit             |
+| Purchases  | List, Create, Detail           |
+| Groups     | List, Create, Detail           |
+| Settings   | Sync status, Appearance        |
 
 ## License
 
